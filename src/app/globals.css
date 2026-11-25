@@ -1,0 +1,127 @@
+@import "tailwindcss";
+
+/*
+ * SailSwipe design tokens, lifted from the Figma file (Urbanist, Primary/Neutral/Indicator ramps).
+ * Everything is a named token so components only use canonical Tailwind classes.
+ */
+@theme {
+  --font-sans: var(--font-urbanist), ui-sans-serif, system-ui, sans-serif;
+
+  /* Type scale: Figma's Paragraph/Heading styles (1.2 ratio), all with "normal" line height */
+  --text-2xs: 0.625rem; /* 10 · Paragraph/004 */
+  --text-2xs--line-height: normal;
+  --text-xs: 0.694375rem; /* 11.11 · Paragraph/003 */
+  --text-xs--line-height: normal;
+  --text-tab: 0.6875rem; /* 11 · tab bar labels */
+  --text-tab--line-height: normal;
+  --text-sm: 0.833125rem; /* 13.33 · Paragraph/002 */
+  --text-sm--line-height: normal;
+  --text-base: 1rem; /* 16 · Paragraph/001 */
+  --text-base--line-height: normal;
+  --text-lg: 1.125rem; /* 18 · section titles */
+  --text-lg--line-height: normal;
+  --text-xl: 1.2rem; /* 19.2 · Heading/006 */
+  --text-xl--line-height: normal;
+  --text-2xl: 1.44rem; /* 23.04 · Heading/005 */
+  --text-2xl--line-height: normal;
+  --text-3xl: 1.728125rem; /* 27.65 · Heading/004 */
+  --text-3xl--line-height: normal;
+
+  --tracking-btn: 0.01em;
+
+  /* Primary */
+  --color-p-900: #052338;
+  --color-p-700: #004a7c;
+  --color-p-600: #0e629b;
+  --color-p-500: #3881c0;
+  --color-p-100: #eff9ff;
+
+  /* Neutral */
+  --color-ink: #1b1b1b;
+  --color-n-900: #2d2d2d;
+  --color-n-800: #414141;
+  --color-n-750: #7b7b7b;
+  --color-n-700: #5f5f5f;
+  --color-n-600: #878787;
+  --color-n-500: #b9b9b9;
+  --color-n-200: #f1f1f1;
+  --color-n-100: #fdfdfd;
+  --color-photo: #d9d9d9;
+  --color-desk: #e7e9ec;
+
+  /* Indicator */
+  --color-error: #dd4444;
+  --color-error-dark: #f85959;
+  --color-error-bg: #fff2f2;
+  --color-error-soft: #f8d4d4;
+
+  --radius-field: 11px;
+  --radius-btn: 13px;
+  --radius-box: 14px;
+  --radius-device: 56px;
+  --radius-screen: 46px;
+
+  --shadow-seg: 0 5px 5px rgb(0 0 0 / 0.08);
+  --shadow-sheet: 0 -8px 30px rgb(0 0 0 / 0.12);
+  --shadow-alert: 0 10px 40px rgb(0 0 0 / 0.18);
+  --shadow-device: 0 40px 80px -20px rgb(5 35 56 / 0.35), 0 0 0 10px #10151b, 0 0 0 11px #2a323c;
+
+  --animate-splash: splash 1.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-caret: caret 1s steps(1) infinite;
+
+  @keyframes splash {
+    0% {
+      opacity: 0;
+      transform: translateY(12px) scale(0.92);
+    }
+    60% {
+      opacity: 1;
+      transform: translateY(-2px) scale(1.02);
+    }
+    100% {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  @keyframes caret {
+    50% {
+      opacity: 0;
+    }
+  }
+}
+
+@utility scrollbar-none {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Mask icons: the Figma SVGs, recoloured with currentColor */
+@utility icon {
+  display: inline-block;
+  flex-shrink: 0;
+  background-color: currentColor;
+  mask: var(--icon) center / contain no-repeat;
+  -webkit-mask: var(--icon) center / contain no-repeat;
+}
+
+html,
+body {
+  -webkit-tap-highlight-color: transparent;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--color-n-600);
+}
+
+/* Month inputs: hide the native calendar glyph, the Figma calendar icon stands in for it */
+input[type="month"]::-webkit-calendar-picker-indicator,
+input[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  cursor: pointer;
+}
